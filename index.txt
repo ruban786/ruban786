@@ -944,24 +944,22 @@ const auth = getAuth(app);
 
 // signup
 document.getElementById("signupBtn").onclick = () => {
-  const email = email.value;
-  const password = password.value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
 
   createUserWithEmailAndPassword(auth, email, password)
     .then(() => alert("Signup successful"))
     .catch(err => alert(err.message));
 };
-
 // login
 document.getElementById("loginBtn").onclick = () => {
-  const email = email.value;
-  const password = password.value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
 
   signInWithEmailAndPassword(auth, email, password)
     .then(() => alert("Login successful"))
     .catch(err => alert(err.message));
 };
-
 // user detect
 onAuthStateChanged(auth, (user) => {
   document.getElementById("userInfo").innerText =
