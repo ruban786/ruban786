@@ -915,57 +915,6 @@ function toggleCard(card) {
 }
 </script>
 
-<!-- ✅ THEN: HTML (outside script) -->
-<div id="userInfo" style="text-align:center; margin:20px; font-weight:bold;"></div>
-
-<div id="loginBox" style="text-align:center; margin-top:20px;">
-  <input type="email" id="email" placeholder="Email"><br><br>
-  <input type="password" id="password" placeholder="Password"><br><br>
-
-  <button id="signupBtn">Sign Up</button>
-  <button id="loginBtn">Login</button>
-</div>
-
-<!-- ✅ THEN: Firebase script -->
-<script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } 
-from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyCgIIfuVWmMwupS1T-g2efVha5SgMV-kV4",
-  authDomain: "ruban-login.firebaseapp.com",
-  projectId: "ruban-login"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-// signup
-document.getElementById("signupBtn").onclick = () => {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  createUserWithEmailAndPassword(auth, email, password)
-    .then(() => alert("Signup successful"))
-    .catch(err => alert(err.message));
-};
-// login
-document.getElementById("loginBtn").onclick = () => {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  signInWithEmailAndPassword(auth, email, password)
-    .then(() => alert("Login successful"))
-    .catch(err => alert(err.message));
-};
-
-// user detect
-onAuthStateChanged(auth, (user) => {
-  document.getElementById("userInfo").innerText =
-    user ? "Welcome " + user.email : "Not logged in";
-});
 
 </script>
 </body>
